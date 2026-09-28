@@ -1,0 +1,17 @@
+com\example\waterfacility\WaterFacilityApplication.class
+com\example\waterfacility\repository\WaterDistributionRepository.class
+com\example\waterfacility\controller\MineralExtractionController.class
+com\example\waterfacility\service\WaterIntakeService.class
+com\example\waterfacility\controller\DesalinationProcessController.class
+com\example\waterfacility\model\WaterIntake.class
+com\example\waterfacility\controller\WaterDistributionController.class
+com\example\waterfacility\controller\WaterIntakeController.class
+com\example\waterfacility\model\MineralExtraction.class
+com\example\waterfacility\service\DesalinationProcessService.class
+com\example\waterfacility\model\DesalinationProcess.class
+com\example\waterfacility\repository\DesalinationProcessRepository.class
+com\example\waterfacility\model\WaterDistribution.class
+com\example\waterfacility\repository\MineralExtractionRepository.class
+com\example\waterfacility\service\WaterDistributionService.class
+com\example\waterfacility\repository\WaterIntakeRepository.class
+com\example\waterfacility\service\MineralExtractionService.class

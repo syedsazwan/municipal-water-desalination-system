@@ -1,0 +1,912 @@
+/* ==========================================================================
+   Municipal Water Desalination & Brine Mineral Extraction Facility
+   Professional Operations UI - Report Screenshot Optimized (1600x900)
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+}
+
+body {
+    background-color: #F5F8FC;
+    color: #1F2937;
+    line-height: 1.45;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-size: 13px;
+}
+
+/* --------------------------------------------------------------------------
+   0. LOGIN SCREEN (Full Page Overlay, Centered Card)
+   -------------------------------------------------------------------------- */
+.login-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #EAF4FF 0%, #F5F8FC 60%, #E3EFFB 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    padding: 20px;
+}
+
+.login-card {
+    background: #ffffff;
+    border: 1px solid #D8E2EC;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(11, 46, 94, 0.09), 0 1px 3px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 430px;
+    padding: 32px 30px;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #EAF4FF;
+    border: 1px solid #C7DCF5;
+    color: #1976D2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+}
+
+.login-header h2 {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: #092147;
+    line-height: 1.35;
+    margin-bottom: 5px;
+}
+
+.login-subtitle {
+    font-size: 12.5px;
+    color: #6B7280;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.login-error-box {
+    display: none;
+    background: #FEE2E2;
+    border: 1px solid #FECACA;
+    color: #B91C1C;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.login-form {
+    width: 100%;
+}
+
+.login-field {
+    margin-bottom: 14px;
+}
+
+.login-field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #1F2937;
+    margin-bottom: 4px;
+}
+
+.password-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-input-wrap input {
+    padding-right: 38px;
+}
+
+.toggle-password-btn {
+    position: absolute;
+    right: 8px;
+    background: transparent;
+    border: none;
+    color: #6B7280;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+}
+
+.toggle-password-btn:hover {
+    color: #1976D2;
+}
+
+.login-btn {
+    width: 100%;
+    height: 38px;
+    font-size: 13.5px;
+    font-weight: 700;
+    margin-top: 8px;
+    border-radius: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   1. TOP HEADER (Height 64px, Navy Gradient, Logo + System Status)
+   -------------------------------------------------------------------------- */
+.app-header {
+    height: 64px;
+    background: linear-gradient(135deg, #092147 0%, #0B2E5E 55%, #12417E 100%);
+    color: #ffffff;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #061833;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    position: relative;
+    z-index: 10;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.header-logo-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #79B8FF;
+    flex-shrink: 0;
+}
+
+.header-title-box h1 {
+    font-size: 16.5px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+    color: #ffffff;
+}
+
+.header-subtitle {
+    font-size: 11.5px;
+    color: #B8D4F0;
+    margin-top: 1px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.system-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: #E0EBF7;
+    letter-spacing: 0.3px;
+}
+
+/* --------------------------------------------------------------------------
+   2. MAIN LAYOUT: Sidebar + Content Area
+   -------------------------------------------------------------------------- */
+.app-container {
+    display: flex;
+    flex: 1;
+    min-height: calc(100vh - 64px);
+}
+
+/* --------------------------------------------------------------------------
+   3. SIDEBAR NAVIGATION (Width 215px, White/Light Blue, SVG Icons)
+   -------------------------------------------------------------------------- */
+.app-sidebar {
+    width: 215px;
+    background-color: #ffffff;
+    border-right: 1px solid #D8E2EC;
+    padding: 14px 8px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-menu {
+    list-style: none;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid #E5E7EB;
+}
+
+.btn-logout-sidebar {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    padding: 9px 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #DC2626;
+    cursor: pointer;
+    border-radius: 6px;
+    border-left: 3px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.15s, color 0.15s;
+}
+
+.btn-logout-sidebar svg {
+    flex-shrink: 0;
+    color: #DC2626;
+    pointer-events: none;
+    transition: color 0.15s;
+}
+
+.btn-logout-sidebar:hover {
+    background-color: #FEE2E2;
+    color: #B91C1C;
+}
+
+.btn-logout-sidebar:hover svg {
+    color: #B91C1C;
+}
+
+.nav-menu li {
+    margin-bottom: 4px;
+}
+
+.nav-btn {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    padding: 9px 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #4B5563;
+    cursor: pointer;
+    border-radius: 6px;
+    border-left: 3px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.15s, color 0.15s;
+}
+
+.nav-btn svg {
+    flex-shrink: 0;
+    color: #6B7280;
+    pointer-events: none;
+}
+
+.nav-btn:hover {
+    background-color: #F0F6FD;
+    color: #092147;
+}
+
+.nav-btn:hover svg {
+    color: #1976D2;
+}
+
+.nav-btn.active {
+    background-color: #EAF4FF;
+    border-left: 3px solid #1976D2;
+    font-weight: 700;
+    color: #092147;
+}
+
+.nav-btn.active svg {
+    color: #1976D2;
+}
+
+/* --------------------------------------------------------------------------
+   4. MAIN CONTENT AREA & CONTAINER (Max-Width 1400px Centered)
+   -------------------------------------------------------------------------- */
+.app-main {
+    flex: 1;
+    padding: 18px 24px;
+    background-color: #F5F8FC;
+    overflow-y: auto;
+}
+
+.content-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.module-section {
+    display: none;
+}
+
+.module-section.active {
+    display: block;
+}
+
+.section-header {
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #D8E2EC;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.section-header-text h2 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #092147;
+    letter-spacing: 0.2px;
+    margin-bottom: 2px;
+}
+
+.section-header-text p {
+    font-size: 12px;
+    color: #6B7280;
+}
+
+/* --------------------------------------------------------------------------
+   5. CARDS (White, Clean Borders, Subtle Shadow, Border Radius 10px)
+   -------------------------------------------------------------------------- */
+.card {
+    background: #ffffff;
+    border: 1px solid #D8E2EC;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 3px rgba(11, 46, 94, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.card h3 {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #092147;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #EEF3F8;
+}
+
+.card-subtitle-badge {
+    font-size: 11.5px;
+    color: #6B7280;
+    font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   6. DASHBOARD GRIDS & COLORED METRIC CARDS
+   -------------------------------------------------------------------------- */
+#module-dashboard {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+#module-dashboard .section-header {
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+}
+
+/* Top Row: 4 Cards */
+.dash-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+/* Second Row: 2 Cards */
+.dash-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+/* Metric Card Base (Compact & Consistent Height) */
+.metric-card {
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 64px;
+    height: 64px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.metric-icon-box {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.metric-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+}
+
+.metric-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: #334155;
+    margin-bottom: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.metric-val-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    line-height: 1.15;
+}
+
+.metric-number {
+    font-size: 22px;
+    font-weight: 800;
+    color: #092147;
+    letter-spacing: -0.4px;
+}
+
+.metric-unit {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #64748B;
+}
+
+.metric-caption {
+    font-size: 10px;
+    color: #64748B;
+    margin-top: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Slightly Stronger Pastel Backgrounds */
+.metric-blue {
+    background: #EBF3FC;
+    border: 1px solid #BFD9F8;
+}
+.metric-blue .metric-icon-box {
+    background: #CFE2FA;
+    color: #1558C0;
+}
+
+.metric-green {
+    background: #EAF8EE;
+    border: 1px solid #B4EBC2;
+}
+.metric-green .metric-icon-box {
+    background: #CBF2D5;
+    color: #15803D;
+}
+
+.metric-orange {
+    background: #FFF1E2;
+    border: 1px solid #FED2A4;
+}
+.metric-orange .metric-icon-box {
+    background: #FFE2C2;
+    color: #C2410C;
+}
+
+.metric-purple {
+    background: #F5EBFE;
+    border: 1px solid #DFBEFD;
+}
+.metric-purple .metric-icon-box {
+    background: #EBD4FD;
+    color: #7E22CE;
+}
+
+.metric-teal {
+    background: #E6F8F5;
+    border: 1px solid #95EFE1;
+}
+.metric-teal .metric-icon-box {
+    background: #C4F4EC;
+    color: #0F766E;
+}
+
+.metric-indigo {
+    background: #EAEFFF;
+    border: 1px solid #BFCBFE;
+}
+.metric-indigo .metric-icon-box {
+    background: #D4DEFE;
+    color: #4338CA;
+}
+
+/* Dashboard Recent Activity Specifics */
+#module-dashboard .table-card {
+    padding: 12px 14px;
+    margin-bottom: 0;
+}
+
+#module-dashboard .table-header-row {
+    margin-bottom: 6px;
+}
+
+#module-dashboard .table-header-row h3 {
+    font-size: 13.5px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+#module-dashboard .card-subtitle-badge {
+    font-size: 11px;
+    color: #475569;
+    font-weight: 500;
+    background: #F1F5F9;
+    border: 1px solid #E2E8F0;
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+#module-dashboard .data-table th {
+    padding: 6px 10px;
+    background-color: #EAF4FF;
+    color: #092147;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.3px;
+    border-bottom: 1px solid #D8E2EC;
+}
+
+#module-dashboard .data-table td {
+    padding: 6px 10px;
+    font-size: 11.5px;
+    line-height: 1.3;
+}
+
+#module-dashboard .data-table .text-center {
+    padding: 12px 10px !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. FORMS (2-Column Grid, Clean Padding, Aligned Labels)
+   -------------------------------------------------------------------------- */
+.form-card {
+    background: #ffffff;
+    border: 1px solid #D8E2EC;
+}
+
+.facility-form {
+    width: 100%;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 9px 18px;
+    margin-bottom: 10px;
+}
+
+.filter-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 9px 16px;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #1F2937;
+    margin-bottom: 3px;
+}
+
+.form-group input,
+.form-group select {
+    height: 33px;
+    padding: 4px 9px;
+    border: 1px solid #CCD7E2;
+    border-radius: 6px;
+    font-size: 12.5px;
+    background-color: #ffffff;
+    color: #111827;
+    width: 100%;
+    transition: border 0.15s, box-shadow 0.15s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #1976D2;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.15);
+}
+
+.form-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+    align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   9. BUTTONS (Consistent Colors, Heights & Padding)
+   -------------------------------------------------------------------------- */
+.btn {
+    height: 33px;
+    padding: 0 15px;
+    font-size: 12.5px;
+    font-weight: 600;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+/* Primary / Save = Blue */
+.btn-primary {
+    background-color: #1976D2;
+    color: #ffffff;
+    border-color: #1976D2;
+}
+
+.btn-primary:hover {
+    background-color: #1565C0;
+    border-color: #0D47A1;
+}
+
+/* Reset / Refresh / Secondary = Gray */
+.btn-secondary {
+    background-color: #6B7280;
+    color: #ffffff;
+    border-color: #6B7280;
+}
+
+.btn-secondary:hover {
+    background-color: #4B5563;
+    border-color: #374151;
+}
+
+/* Edit / Update = Green */
+.btn-success {
+    background-color: #2E7D32;
+    color: #ffffff;
+    border-color: #2E7D32;
+}
+
+.btn-success:hover {
+    background-color: #1B5E20;
+    border-color: #1B5E20;
+}
+
+/* Delete = Red */
+.btn-danger {
+    background-color: #D32F2F;
+    color: #ffffff;
+    border-color: #D32F2F;
+}
+
+.btn-danger:hover {
+    background-color: #B71C1C;
+    border-color: #B71C1C;
+}
+
+/* Small Table Action Buttons */
+.btn-sm {
+    height: 24px;
+    padding: 0 8px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   10. ALERTS & MESSAGES
+   -------------------------------------------------------------------------- */
+.message-box {
+    display: none;
+    padding: 7px 12px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.message-box.success {
+    display: block;
+    background-color: #DCFCE7;
+    color: #15803D;
+    border: 1px solid #BBF7D0;
+}
+
+.message-box.error {
+    display: block;
+    background-color: #FEE2E2;
+    color: #B91C1C;
+    border: 1px solid #FECACA;
+}
+
+/* --------------------------------------------------------------------------
+   11. DATA TABLES (Rounded Container, Light Blue Header, Zebra Rows)
+   -------------------------------------------------------------------------- */
+.table-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.table-header-row h3 {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    width: 100%;
+    border: 1px solid #D8E2EC;
+    border-radius: 8px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    text-align: left;
+}
+
+.data-table th,
+.data-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #EDF2F7;
+    border-right: 1px solid #F1F5F9;
+    vertical-align: middle;
+}
+
+.data-table th:last-child,
+.data-table td:last-child {
+    border-right: none;
+}
+
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table th {
+    background-color: #EAF4FF;
+    color: #092147;
+    font-weight: 700;
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    border-bottom: 1px solid #D8E2EC;
+}
+
+/* Important Table Values (Codes / IDs) */
+#intake-table tbody td:nth-child(1),
+#intake-table tbody td:nth-child(2),
+#desalination-table tbody td:nth-child(1),
+#desalination-table tbody td:nth-child(2),
+#mineral-table tbody td:nth-child(1),
+#mineral-table tbody td:nth-child(2),
+#distribution-table tbody td:nth-child(1),
+#distribution-table tbody td:nth-child(2),
+#dashboard-activity-table tbody td:nth-child(2),
+#report-intake-table tbody td:nth-child(1),
+#report-desal-table tbody td:nth-child(1),
+#report-mineral-table tbody td:nth-child(1),
+#report-dist-table tbody td:nth-child(1) {
+    font-weight: 600;
+    color: #092147;
+}
+
+.data-table tbody tr:nth-child(even) {
+    background-color: #F9FBFE;
+}
+
+.data-table tbody tr:hover {
+    background-color: #F0F6FD;
+}
+
+.text-center {
+    text-align: center;
+    color: #6B7280;
+    padding: 14px !important;
+    font-style: italic;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   12. REPORTS PAGE 3-COLUMN SUMMARY GRID
+   -------------------------------------------------------------------------- */
+.report-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   12. RESPONSIVENESS (Optimized for 1600x900 & Desktop)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+    .dash-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+    .app-sidebar {
+        width: 100%;
+        padding: 8px;
+    }
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .filter-grid {
+        grid-template-columns: 1fr;
+    }
+    .dash-grid-4,
+    .dash-grid-2,
+    .report-grid-3 {
+        grid-template-columns: 1fr;
+    }
+}

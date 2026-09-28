@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Municipal Water Desalination &amp; Brine Mineral Extraction Facility</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 0. Login Screen Overlay -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                    </svg>
+                </div>
+                <h2>Municipal Water Desalination &amp; Brine Mineral Extraction Facility</h2>
+                <p class="login-subtitle">Plant Management System</p>
+            </div>
+
+            <div id="login-error-msg" class="login-error-box" style="display: none;"></div>
+
+            <form id="login-form" class="login-form" autocomplete="off" novalidate>
+                <div class="form-group login-field">
+                    <label for="login-username">Username</label>
+                    <input type="text" id="login-username" placeholder="Enter username" autocomplete="off">
+                </div>
+
+                <div class="form-group login-field">
+                    <label for="login-password">Password</label>
+                    <div class="password-input-wrap">
+                        <input type="password" id="login-password" placeholder="Enter password" autocomplete="current-password">
+                        <button type="button" id="toggle-password-btn" class="toggle-password-btn" title="Toggle password visibility">
+                            <svg id="eye-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary login-btn" id="login-submit-btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 1. Top Header -->
+    <header class="app-header">
+        <div class="header-left">
+            <div class="header-logo-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                </svg>
+            </div>
+            <div class="header-title-box">
+                <h1>Municipal Water Desalination &amp; Brine Mineral Extraction Facility</h1>
+                <p class="header-subtitle">Management System</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <span class="system-badge">
+                <span class="status-dot green"></span>
+                Municipal Operations &bull; Online
+            </span>
+        </div>
+    </header>
+
+    <!-- 2. Main Container with Sidebar and Content -->
+    <div class="app-container">
+        
+        <!-- Sidebar Navigation -->
+        <nav class="app-sidebar">
+            <ul class="nav-menu">
+                <li>
+                    <button class="nav-btn active" data-module="dashboard">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                        Dashboard
+                    </button>
+                </li>
+                <li>
+                    <button class="nav-btn" data-module="water-intake">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+                        Water Intake
+                    </button>
+                </li>
+                <li>
+                    <button class="nav-btn" data-module="desalination">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                        Desalination
+                    </button>
+                </li>
+                <li>
+                    <button class="nav-btn" data-module="mineral-extraction">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 2 18 2 22 8 12 22 2 8 6 2"></polygon></svg>
+                        Mineral Extraction
+                    </button>
+                </li>
+                <li>
+                    <button class="nav-btn" data-module="water-distribution">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                        Water Distribution
+                    </button>
+                </li>
+                <li>
+                    <button class="nav-btn" data-module="reports">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                        Reports
+                    </button>
+                </li>
+            </ul>
+
+            <div class="sidebar-bottom">
+                <button type="button" id="sidebar-logout-btn" class="btn-logout-sidebar" title="Sign out of management system">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    Logout
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="app-main">
+            <div class="content-wrapper">
+
+                <!-- Module 0: Dashboard -->
+                <section id="module-dashboard" class="module-section active">
+                    <div class="section-header">
+                        <div class="section-header-text">
+                            <h2>Dashboard</h2>
+                            <p>Real-time operational metrics and process balances</p>
+                        </div>
+                        <div class="section-header-actions">
+                            <button class="btn btn-secondary" id="dashboard-refresh-btn">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 5px;"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                                Refresh
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- TOP ROW: 4 Colored Metric Cards -->
+                    <div class="dash-grid-4">
+                        <div class="metric-card metric-blue">
+                            <div class="metric-icon-box">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+                            </div>
+                            <div class="metric-info">
+                                <span class="metric-title">Total Water Intake</span>
+                                <div class="metric-val-wrap"><span class="metric-number" id="dash-water-intake">0</span> <span class="metric-unit">m³</span></div>
+                                <span class="metric-caption">Raw water feed intake</span>
+                            </div>
+                        </div>
+
+                        <div class="metric-card metric-green">
+                            <div class="metric-icon-box">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                            </div>
+                            <div class="metric-info">
+                                <span class="metric-title">Fresh Water Produced</span>
+                                <div class="metric-val-wrap"><span class="metric-number" id="dash-fresh-water">0</span> <span class="metric-unit">m³</span></div>
+                                <span class="metric-caption">Clean potable output</span>
+                            </div>
+                        </div>
+
+                        <div class="metric-card metric-orange">
+                            <div class="metric-icon-box">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.31"></path><path d="M14 2v7.31"></path><path d="M8.5 2h7"></path><path d="M14 9.3a6.5 6.5 0 1 1-4 0"></path><path d="M5.52 16h12.96"></path></svg>
+                            </div>
+                            <div class="metric-info">
+                                <span class="metric-title">Brine Generated</span>
+                                <div class="metric-val-wrap"><span class="metric-number" id="dash-brine">0</span> <span class="metric-unit">m³</span></div>
+                                <span class="metric-caption">Reject brine feed</span>
+                            </div>
+                        </div>
+
+                        <div class="metric-card metric-purple">
+                            <div class="metric-icon-box">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="6 2 18 2 22 8 12 22 2 8 6 2"></polygon></svg>
+                            </div>
+                            <div class="metric-info">
+                                <span class="metric-title">Minerals Extracted</span>
+                                <div class="metric-val-wrap"><span class="metric-number" id="dash-minerals">0</span> <span class="metric-unit">kg</span></div>
+                                <span class="metric-caption">Salts &amp; minerals recovery</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECOND ROW: 2 Colored Metric Cards -->
+                    <div class="dash-grid-2">
+                        <div class="metric-card metric-teal">
+                            <div class="metric-icon-box">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                            </div>
+                            <div class="metric-info">
+                                <span class="metric-title">Total Water Processed</span>
+                                <div class="metric-val-wrap"><span class="metric-number" id="dash-water-processed">0</span> <span class="metric-unit">m³</span></div>
+                                <span class="metric-caption">RO desalination feed volume</span>
+                            </div>
+                        </div>
+
+                        <div class="metric-card metric-indigo">
+                            <div class="metric-icon-box">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                            </div>
+                            <div class="metric-info">
+                                <span class="metric-title">Water Distributed</span>
+                                <div class="metric-val-wrap"><span class="metric-number" id="dash-distributed">0</span> <span class="metric-unit">m³</span></div>
+                                <span class="metric-caption">Municipal grid supply dispatched</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- THIRD ROW: Recent Activity Table (Full Width) -->
+                    <div class="card table-card">
+                        <div class="table-header-row">
+                            <h3>Recent Activity</h3>
+                            <span class="card-subtitle-badge">Latest Logged Events</span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="dashboard-activity-table">
+                                <thead>
+                                    <tr>
+                                        <th>Module</th>
+                                        <th>Code</th>
+                                        <th>Details</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5" class="text-center">Loading recent activity...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Module 1: Water Intake -->
+                <section id="module-water-intake" class="module-section">
+                    <div class="section-header">
+                        <div class="section-header-text">
+                            <h2>Water Intake</h2>
+                            <p>Manage raw seawater and brackish water intake logs and salinity levels</p>
+                        </div>
+                    </div>
+
+                    <div class="card form-card">
+                        <div id="intake-message" class="message-box"></div>
+                        <h3 id="intake-form-title">Add New Water Intake Record</h3>
+                        <form id="water-intake-form" class="facility-form">
+                            <input type="hidden" id="intake-id">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="intake-code">Intake Code</label>
+                                    <input type="text" id="intake-code" placeholder="e.g., WI-1001" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="intake-source">Source</label>
+                                    <input type="text" id="intake-source" placeholder="e.g., Coastal Inlet Station 1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="intake-quantity">Quantity (m³)</label>
+                                    <input type="number" step="0.01" id="intake-quantity" placeholder="e.g., 50000" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="intake-salinity">Salinity (ppm)</label>
+                                    <input type="number" step="0.01" id="intake-salinity" placeholder="e.g., 35000" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="intake-date">Intake Date</label>
+                                    <input type="date" id="intake-date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="intake-status">Status</label>
+                                    <select id="intake-status" required>
+                                        <option value="Active">Active</option>
+                                        <option value="Pending Analysis">Pending Analysis</option>
+                                        <option value="Suspended">Suspended</option>
+                                        <option value="Completed">Completed</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary" id="intake-submit-btn">Save Intake Record</button>
+                                <button type="button" class="btn btn-secondary" id="intake-reset-btn">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="card table-card">
+                        <div class="table-header-row">
+                            <h3>Water Intake Records</h3>
+                            <button class="btn btn-secondary" id="intake-refresh-btn">Refresh Table</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="intake-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Intake Code</th>
+                                        <th>Source</th>
+                                        <th>Quantity (m³)</th>
+                                        <th>Salinity (ppm)</th>
+                                        <th>Intake Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="8" class="text-center">No water intake records found in MySQL. Use the form above to add a new record.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Module 2: Desalination Process -->
+                <section id="module-desalination" class="module-section">
+                    <div class="section-header">
+                        <div class="section-header-text">
+                            <h2>Desalination</h2>
+                            <p>Monitor reverse osmosis processing, clean fresh water output, and concentrated brine generation</p>
+                        </div>
+                    </div>
+
+                    <div class="card form-card">
+                        <div id="desal-message" class="message-box"></div>
+                        <h3 id="desal-form-title">Record Desalination Process Batch</h3>
+                        <form id="desalination-form" class="facility-form">
+                            <input type="hidden" id="desal-id">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="desal-code">Process Code</label>
+                                    <input type="text" id="desal-code" placeholder="e.g., DP-2001" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="desal-water-processed">Water Processed (m³)</label>
+                                    <input type="number" step="0.01" id="desal-water-processed" placeholder="e.g., 40000" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="desal-fresh-output">Fresh Water Output (m³)</label>
+                                    <input type="number" step="0.01" id="desal-fresh-output" placeholder="e.g., 18000" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="desal-brine-output">Brine Output (m³)</label>
+                                    <input type="number" step="0.01" id="desal-brine-output" placeholder="e.g., 22000" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="desal-date">Process Date</label>
+                                    <input type="date" id="desal-date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="desal-status">Status</label>
+                                    <select id="desal-status" required>
+                                        <option value="In Progress">In Progress</option>
+                                        <option value="Completed">Completed</option>
+                                        <option value="Under Maintenance">Under Maintenance</option>
+                                        <option value="Halted">Halted</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary" id="desal-submit-btn">Save Process Record</button>
+                                <button type="button" class="btn btn-secondary" id="desal-reset-btn">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="card table-card">
+                        <div class="table-header-row">
+                            <h3>Desalination Batches</h3>
+                            <button class="btn btn-secondary" id="desal-refresh-btn">Refresh Table</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="desalination-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Process Code</th>
+                                        <th>Water Processed (m³)</th>
+                                        <th>Fresh Water (m³)</th>
+                                        <th>Brine Output (m³)</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="8" class="text-center">No desalination batches found in MySQL. Use the form above to add a new batch.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Module 3: Mineral Extraction -->
+                <section id="module-mineral-extraction" class="module-section">
+                    <div class="section-header">
+                        <div class="section-header-text">
+                            <h2>Mineral Extraction</h2>
+                            <p>Track recovery of minerals (Sodium Chloride, Magnesium, Potassium, Calcium) from post-desalination reject brine</p>
+                        </div>
+                    </div>
+
+                    <div class="card form-card">
+                        <div id="mineral-message" class="message-box"></div>
+                        <h3 id="mineral-form-title">Log Mineral Extraction</h3>
+                        <form id="mineral-form" class="facility-form">
+                            <input type="hidden" id="mineral-id">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="mineral-code">Extraction Code</label>
+                                    <input type="text" id="mineral-code" placeholder="e.g., ME-3001" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mineral-name">Mineral Name</label>
+                                    <select id="mineral-name" required>
+                                        <option value="">-- Select Mineral --</option>
+                                        <option value="Sodium Chloride">Sodium Chloride</option>
+                                        <option value="Magnesium">Magnesium</option>
+                                        <option value="Potassium">Potassium</option>
+                                        <option value="Calcium">Calcium</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mineral-quantity">Mineral Quantity (kg)</label>
+                                    <input type="number" step="0.01" id="mineral-quantity" placeholder="e.g., 2500" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mineral-purity">Purity (%)</label>
+                                    <input type="number" step="0.01" id="mineral-purity" placeholder="e.g., 99.2" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mineral-date">Extraction Date</label>
+                                    <input type="date" id="mineral-date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mineral-utilization">Utilization</label>
+                                    <select id="mineral-utilization" required>
+                                        <option value="">-- Select Utilization --</option>
+                                        <option value="Industrial Use">Industrial Use</option>
+                                        <option value="Chemical Use">Chemical Use</option>
+                                        <option value="Fertilizer">Fertilizer</option>
+                                        <option value="Storage">Storage</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mineral-status">Status</label>
+                                    <select id="mineral-status" required>
+                                        <option value="Extracted">Extracted</option>
+                                        <option value="Processing">Processing</option>
+                                        <option value="Stored">Stored</option>
+                                        <option value="Distributed">Distributed</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary" id="mineral-submit-btn">Save Extraction Record</button>
+                                <button type="button" class="btn btn-secondary" id="mineral-reset-btn">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="card table-card">
+                        <div class="table-header-row">
+                            <h3>Mineral Extraction Records</h3>
+                            <button class="btn btn-secondary" id="mineral-refresh-btn">Refresh Table</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="mineral-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Code</th>
+                                        <th>Mineral</th>
+                                        <th>Quantity (kg)</th>
+                                        <th>Purity (%)</th>
+                                        <th>Date</th>
+                                        <th>Utilization</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="9" class="text-center">No mineral extraction records found in MySQL. Use the form above to log an extraction.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Module 4: Water Distribution -->
+                <section id="module-water-distribution" class="module-section">
+                    <div class="section-header">
+                        <div class="section-header-text">
+                            <h2>Water Distribution</h2>
+                            <p>Manage and log municipal water pipeline dispatches to local sectors and reservoir zones</p>
+                        </div>
+                    </div>
+
+                    <div class="card form-card">
+                        <div id="dist-message" class="message-box"></div>
+                        <h3 id="dist-form-title">Dispatch Distribution Log</h3>
+                        <form id="distribution-form" class="facility-form">
+                            <input type="hidden" id="distribution-id">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="dist-code">Distribution Code</label>
+                                    <input type="text" id="dist-code" placeholder="e.g., WD-4001" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dist-quantity">Water Quantity (m³)</label>
+                                    <input type="number" step="0.01" id="dist-quantity" placeholder="e.g., 12000" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dist-zone">Distribution Zone</label>
+                                    <select id="dist-zone" required>
+                                        <option value="">-- Select Distribution Zone --</option>
+                                        <option value="North Zone">North Zone</option>
+                                        <option value="South Zone">South Zone</option>
+                                        <option value="East Zone">East Zone</option>
+                                        <option value="West Zone">West Zone</option>
+                                        <option value="Central Zone">Central Zone</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dist-date">Distribution Date</label>
+                                    <input type="date" id="dist-date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dist-status">Status</label>
+                                    <select id="dist-status" required>
+                                        <option value="Scheduled">Scheduled</option>
+                                        <option value="In Progress">In Progress</option>
+                                        <option value="Delivered">Delivered</option>
+                                        <option value="Completed">Completed</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary" id="dist-submit-btn">Save Distribution Record</button>
+                                <button type="button" class="btn btn-secondary" id="dist-reset-btn">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="card table-card">
+                        <div class="table-header-row">
+                            <h3>Water Distribution Dispatches</h3>
+                            <button class="btn btn-secondary" id="dist-refresh-btn">Refresh Table</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="distribution-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Code</th>
+                                        <th>Quantity (m³)</th>
+                                        <th>Zone</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="7" class="text-center">No water distribution logs found in MySQL. Use the form above to add a distribution log.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Module 5: Reports -->
+                <section id="module-reports" class="module-section">
+                    <div class="section-header">
+                        <div class="section-header-text">
+                            <h2>Reports</h2>
+                            <p>Operational overview and summary statistics calculated from MySQL records</p>
+                        </div>
+                    </div>
+
+                    <!-- Report Filters -->
+                    <div class="card form-card">
+                        <h3>Report Filters</h3>
+                        <form id="report-filter-form" class="facility-form" onsubmit="return false;">
+                            <div class="filter-grid">
+                                <div class="form-group">
+                                    <label for="report-from-date">From Date</label>
+                                    <input type="date" id="report-from-date">
+                                </div>
+                                <div class="form-group">
+                                    <label for="report-to-date">To Date</label>
+                                    <input type="date" id="report-to-date">
+                                </div>
+                                <div class="form-group">
+                                    <label for="report-type">Report Type</label>
+                                    <select id="report-type">
+                                        <option value="All">All</option>
+                                        <option value="Water Intake">Water Intake</option>
+                                        <option value="Desalination">Desalination</option>
+                                        <option value="Mineral Extraction">Mineral Extraction</option>
+                                        <option value="Water Distribution">Water Distribution</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-primary" id="report-apply-btn">Apply Filter</button>
+                                <button type="button" class="btn btn-secondary" id="report-clear-btn">Clear Filter</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Summary Cards (3 Columns x 2 Rows) -->
+                    <div class="card report-card">
+                        <div class="table-header-row">
+                            <h3>Operational Summary Totals</h3>
+                            <span id="report-filter-status" class="card-subtitle-badge">Showing All Records</span>
+                        </div>
+                        
+                        <div class="report-grid-3" id="reports-summary-container">
+                            <div class="metric-card metric-blue" id="summary-card-intake">
+                                <div class="metric-icon-box">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+                                </div>
+                                <div class="metric-info">
+                                    <span class="metric-title">Total Water Intake</span>
+                                    <div class="metric-val-wrap"><span class="metric-number" id="summary-water-intake">0</span> <span class="metric-unit">m³</span></div>
+                                    <span class="metric-caption">Raw water intake</span>
+                                </div>
+                            </div>
+
+                            <div class="metric-card metric-teal" id="summary-card-processed">
+                                <div class="metric-icon-box">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                                </div>
+                                <div class="metric-info">
+                                    <span class="metric-title">Total Water Processed</span>
+                                    <div class="metric-val-wrap"><span class="metric-number" id="summary-water-processed">0</span> <span class="metric-unit">m³</span></div>
+                                    <span class="metric-caption">Feed water volume</span>
+                                </div>
+                            </div>
+
+                            <div class="metric-card metric-green" id="summary-card-fresh">
+                                <div class="metric-icon-box">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                                </div>
+                                <div class="metric-info">
+                                    <span class="metric-title">Fresh Water Produced</span>
+                                    <div class="metric-val-wrap"><span class="metric-number" id="summary-fresh-water">0</span> <span class="metric-unit">m³</span></div>
+                                    <span class="metric-caption">Potable water yield</span>
+                                </div>
+                            </div>
+
+                            <div class="metric-card metric-orange" id="summary-card-brine">
+                                <div class="metric-icon-box">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.31"></path><path d="M14 2v7.31"></path><path d="M8.5 2h7"></path><path d="M14 9.3a6.5 6.5 0 1 1-4 0"></path><path d="M5.52 16h12.96"></path></svg>
+                                </div>
+                                <div class="metric-info">
+                                    <span class="metric-title">Brine Generated</span>
+                                    <div class="metric-val-wrap"><span class="metric-number" id="summary-brine">0</span> <span class="metric-unit">m³</span></div>
+                                    <span class="metric-caption">Reject brine volume</span>
+                                </div>
+                            </div>
+
+                            <div class="metric-card metric-purple" id="summary-card-minerals">
+                                <div class="metric-icon-box">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="6 2 18 2 22 8 12 22 2 8 6 2"></polygon></svg>
+                                </div>
+                                <div class="metric-info">
+                                    <span class="metric-title">Minerals Extracted</span>
+                                    <div class="metric-val-wrap"><span class="metric-number" id="summary-minerals">0</span> <span class="metric-unit">kg</span></div>
+                                    <span class="metric-caption">Extracted minerals yield</span>
+                                </div>
+                            </div>
+
+                            <div class="metric-card metric-indigo" id="summary-card-distributed">
+                                <div class="metric-icon-box">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                                </div>
+                                <div class="metric-info">
+                                    <span class="metric-title">Water Distributed</span>
+                                    <div class="metric-val-wrap"><span class="metric-number" id="summary-distributed">0</span> <span class="metric-unit">m³</span></div>
+                                    <span class="metric-caption">Municipal dispatch total</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Table A: Water Intake Records -->
+                    <div class="card table-card" id="report-table-intake-card">
+                        <div class="table-header-row">
+                            <h3>Water Intake Historical Logs</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="report-intake-table">
+                                <thead>
+                                    <tr>
+                                        <th>Intake Code</th>
+                                        <th>Source</th>
+                                        <th>Quantity (m³)</th>
+                                        <th>Salinity (ppm)</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="6" class="text-center">No water intake records found for selected filter.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Table B: Desalination Records -->
+                    <div class="card table-card" id="report-table-desal-card">
+                        <div class="table-header-row">
+                            <h3>Desalination Process Historical Logs</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="report-desal-table">
+                                <thead>
+                                    <tr>
+                                        <th>Process Code</th>
+                                        <th>Water Processed (m³)</th>
+                                        <th>Fresh Water Output (m³)</th>
+                                        <th>Brine Output (m³)</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="6" class="text-center">No desalination batches found for selected filter.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Table C: Mineral Extraction Records -->
+                    <div class="card table-card" id="report-table-mineral-card">
+                        <div class="table-header-row">
+                            <h3>Mineral Extraction Historical Logs</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="report-mineral-table">
+                                <thead>
+                                    <tr>
+                                        <th>Extraction Code</th>
+                                        <th>Mineral Name</th>
+                                        <th>Quantity (kg)</th>
+                                        <th>Purity (%)</th>
+                                        <th>Date</th>
+                                        <th>Utilization</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="7" class="text-center">No mineral extraction records found for selected filter.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Table D: Water Distribution Records -->
+                    <div class="card table-card" id="report-table-dist-card">
+                        <div class="table-header-row">
+                            <h3>Water Distribution Historical Logs</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="report-dist-table">
+                                <thead>
+                                    <tr>
+                                        <th>Distribution Code</th>
+                                        <th>Water Quantity (m³)</th>
+                                        <th>Distribution Zone</th>
+                                        <th>Distribution Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5" class="text-center">No water distribution logs found for selected filter.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
